@@ -128,8 +128,64 @@ function addFlowers(array){
         containerFlowers.append(div)
     });
 
+    JSON.parse(localStorage.getItem("flowers"))
 }
 
 addFlowers(flowers)
 
+const users = [
+    {
+        user: "wala",
+        password: "123",
+    },
+    {
+        user: "hanan",
+        password: "456",
+    },
+    {
+        user: "ahmed",
+        password: "789",
+    },
+]
+
+localStorage.setItem("users", JSON.stringify(users))
+
+
+function logIn(){
+    const userName = $("#userName").val()
+    const userPassword = $("#password").val()
+
+    const newUser= {
+        name: userName,
+        password: userPassword
+    }
+
+    users.push(newUser)
+
+    localStorage.setItem("user", JSON.stringify(users))
+    // localStorage.setItem("password", JSON.stringify(userPassword))
+}
+
+const imgUrlAdminPage = $("#imgUrlAdminPage").val()
+const descriptionAdminPage = $("#descriptionAdminPage").val()
+const priceItemAdminPage = $("#priceItemAdminPage").val()
+
+function addItemToHomePage(){
+    const imgUrlAdminPage = $("#imgUrlAdminPage").val()
+    const descriptionAdminPage = $("#descriptionAdminPage").val()
+    const priceItemAdminPage = $("#priceItemAdminPage").val()
+    
+    const addNewFlower= 
+    {
+        imgUrl: imgUrlAdminPage,
+        description: descriptionAdminPage,
+        price: priceItemAdminPage,
+    };
+
+    flowers.push(addNewFlower)
+    localStorage.setItem("flowers", JSON.stringify(flowers))
+
+    // containerFlowers.html("")
+    // addFlowers(flowers)
+}
 

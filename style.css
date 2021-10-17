@@ -104,6 +104,15 @@ ul {
   width: 50%;
 }
 
+.logo-with-name-signIn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width: 15%;
+} 
+
 hr {
   margin-left: 10%;
   margin-right: 10%;
@@ -201,7 +210,7 @@ hr {
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
-  background-color: rgb(191, 222, 154, 0.5) !important;
+  background-color: rgb(181, 207, 206, 0.3) !important;
 }
 
 .social_icon span {
@@ -249,14 +258,15 @@ input:focus {
 }
 
 .login_btn {
-  color: black;
+  color: #908160;
   background-color: #87ae9b;
   width: 100px;
 }
 
 .login_btn:hover {
-  color: black;
-  background-color: #908160;
+  color: #534a35;
+
+  background-color: rgb(135, 174, 155, 0.7);
 }
 
 .links {
@@ -268,6 +278,18 @@ input:focus {
 }
 
 /* End sign in page */
+
+
+/* Start Admin Page Style */
+
+/* #submitAdminPage{
+    margin: auto;
+    justify-content: center;
+    align-self: center;
+    border: 2px solid black;
+} */
+
+/* End Admin Page Style */
 
 @media (max-width: 500px) {
   .toggle-button {
