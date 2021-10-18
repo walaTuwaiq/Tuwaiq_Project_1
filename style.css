@@ -31,6 +31,8 @@ body {
 
 .list li:hover {
   background-color: rgb(181, 207, 206, 0.5);
+  transition: 0.5s ease;
+
 }
 
 #logo {
@@ -61,6 +63,22 @@ ul {
   padding: 0%;
   display: flex;
   justify-content: flex-start;
+  /* border: 2px solid black; */
+}
+
+#spanCart{
+  background-color: rgb(255, 255, 255, 0.7);
+  color: red;
+  font-weight: bold;
+  background-size: cover;
+  width: 10px;
+  display: flex;
+  position:absolute;
+  /* align-items: center; */
+  justify-content: center;
+  font-size: 10px;
+  margin-bottom: 5px;
+  margin-right: 5px;
   /* border: 2px solid black; */
 }
 
@@ -176,6 +194,8 @@ hr {
   /* transform-origin: bottom; */
 
   cursor: pointer;
+  transition: 0.3s ease;
+
 }
 
 .flowerFullImage img {
@@ -213,7 +233,7 @@ hr {
   background-color: rgb(181, 207, 206, 0.3) !important;
 }
 
-.social_icon span {
+/* .social_icon span {
   font-size: 60px;
   margin-left: 10px;
   color: #908160;
@@ -222,7 +242,8 @@ hr {
 .social_icon span:hover {
   color: #908160;
   cursor: pointer;
-}
+  transition: 0.3s ease;
+} */
 
 .card-header h3 {
   color: #908160;
@@ -267,6 +288,8 @@ input:focus {
   color: #534a35;
 
   background-color: rgb(135, 174, 155, 0.7);
+  transition: 0.5s ease;
+
 }
 
 .links {
@@ -288,6 +311,28 @@ input:focus {
     align-self: center;
     border: 2px solid black;
 } */
+
+.spanElement{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self:start;
+  width: 30px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  border-radius: 0px 0px 0px 1rem;
+  box-shadow: 2px 2px 1px 1px black;
+  /* border: 2px solid black; */
+}
+
+.spanElement:hover{
+  background-color: rgb(255, 0, 0, 0.6);
+  color: rgb(255, 255, 255, 0.7);
+  box-shadow: 2px 2px 1px 1px rgb(0, 0, 0 , 0.5);
+  transition: 0.5s ease;
+
+}
 
 /* End Admin Page Style */
 
@@ -322,5 +367,10 @@ input:focus {
 
   .list.active {
     display: flex;
+  }
+
+  #containerFlowers{
+    display: flex;
+    flex-direction: column;
   }
 }

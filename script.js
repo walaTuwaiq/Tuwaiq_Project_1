@@ -7,6 +7,10 @@ toggle.addEventListener("click", () => {
 
 const containerFlowers = $("#containerFlowers");
 
+// const spanCartIcon = $(`<span onclick="deleteItemFromHomePage(${index})">0</span>`)
+// div.append(spanCartIcon)
+
+
 const flowers = [
   {
     imgUrl: "10.png",
@@ -31,7 +35,7 @@ const flowers = [
   {
     imgUrl: "5.png",
     description: "kldjkljdlajd",
-    price: "90SR",
+    price: "80SR",
   },
   {
     imgUrl: "6.png",
@@ -100,92 +104,122 @@ const flowers = [
   },
 ];
 
-
-// const tableHover= $("#tableOfFlowers")
-// tableHover.hide()
-
-function addFlowers(array){
-
-    // tableHover.show()
-
-    // array.forEach( (elm) => {
-    //     const td = $(` <tr><td class="flowerFullImage"> 
-    //     <img src="${elm.imgUrl}" alt="flower">
-    //     <p> ${elm.description} </p>
-    //     <p> ${elm.price} </p>
-    //     </td>
-    //     </tr>
-    //     `)
-    //     tableHover.append(td)
-    // });
-
-    array.forEach( (elm) => {
-        const div = $(` <div class="flowerFullImage"> 
+function addFlowers(array) {
+  array.forEach((elm, index) => {
+    const div = $(` <div class="flowerFullImage"> 
         <img src="${elm.imgUrl}" alt="flower">
         <p class="description"> ${elm.description} </p>
         <p class="price"> ${elm.price} </p>
-        `)
-        containerFlowers.append(div)
-    });
-
-    JSON.parse(localStorage.getItem("flowers"))
+        `);
+    const span = $(`<span id="${index}" onclick="deleteItemFromHomePage(${index})" class="spanElement">x</span>`)
+    div.append(span)
+    containerFlowers.append(div);
+    // div.append(span)
+  });
+  localStorage.setItem("flowers", JSON.stringify(flowers));
 }
 
-addFlowers(flowers)
+addFlowers( JSON.parse(localStorage.getItem("flowers")));
 
 const users = [
-    {
-        user: "wala",
-        password: "123",
-    },
-    {
-        user: "hanan",
-        password: "456",
-    },
-    {
-        user: "ahmed",
-        password: "789",
-    },
-]
+  {
+    user: "wala",
+    password: "123",
+  },
+  {
+    user: "hanan",
+    password: "456",
+  },
+  {
+    user: "ahmed",
+    password: "789",
+  },
+];
 
-localStorage.setItem("users", JSON.stringify(users))
+localStorage.setItem("users", JSON.stringify(users));
 
+function logIn() {
+  const userName = $("#userName").val();
+  const userPassword = $("#password").val();
 
-function logIn(){
-    const userName = $("#userName").val()
-    const userPassword = $("#password").val()
+  const newUser = {
+    name: userName,
+    password: userPassword,
+  };
 
-    const newUser= {
-        name: userName,
-        password: userPassword
-    }
+  users.push(newUser);
 
-    users.push(newUser)
-
-    localStorage.setItem("user", JSON.stringify(users))
-    // localStorage.setItem("password", JSON.stringify(userPassword))
+  localStorage.setItem("user", JSON.stringify(users));
+  // localStorage.setItem("password", JSON.stringify(userPassword))
 }
 
-const imgUrlAdminPage = $("#imgUrlAdminPage").val()
-const descriptionAdminPage = $("#descriptionAdminPage").val()
-const priceItemAdminPage = $("#priceItemAdminPage").val()
+// const imgUrlAdminPage = $("#imgUrlAdminPage").val();
+// const descriptionAdminPage = $("#descriptionAdminPage").val();
+// const priceItemAdminPage = $("#priceItemAdminPage").val();
 
-function addItemToHomePage(){
-    const imgUrlAdminPage = $("#imgUrlAdminPage").val()
-    const descriptionAdminPage = $("#descriptionAdminPage").val()
-    const priceItemAdminPage = $("#priceItemAdminPage").val()
-    
-    const addNewFlower= 
-    {
-        imgUrl: imgUrlAdminPage,
-        description: descriptionAdminPage,
-        price: priceItemAdminPage,
-    };
+function addItemToHomePage() {
+  const imgUrlAdminPage = $("#imgUrlAdminPage").val();
+  const descriptionAdminPage = $("#descriptionAdminPage").val();
+  const priceItemAdminPage = $("#priceItemAdminPage").val();
 
-    flowers.push(addNewFlower)
-    localStorage.setItem("flowers", JSON.stringify(flowers))
+  const addNewFlower = {
+    imgUrl: imgUrlAdminPage,
+    description: descriptionAdminPage,
+    price: priceItemAdminPage,
+  };
 
-    // containerFlowers.html("")
-    // addFlowers(flowers)
+  flowers.push(addNewFlower);
+  localStorage.setItem("flowers", JSON.stringify(flowers));
+
+  containerFlowers.html("");
+  addFlowers(JSON.parse(localStorage.getItem("flowers")));
 }
+
+function deleteItemFromHomePage(id){
+
+  flowers.splice(id, 1);
+  localStorage.setItem("flowers", JSON.stringify(flowers));
+  containerFlowers.html("");
+  addFlowers(JSON.parse(localStorage.getItem("flowers")));
+}
+
+// const divOfHomePage = $("#divOfHomePage")
+
+$("#divOfSignInPage").hide();
+$("#divOfAdminPage").hide();
+
+function divOfHomePage(){
+  $("#homeLink").click(function(){
+    $("#divOfHomePage").show();
+    $("#divOfAdminPage").hide();
+    $("#divOfSignInPage").hide();
+  });
+}
+
+function divOfSignInPage(){
+  $("#signInLink").click(function(){
+    $("#divOfHomePage").hide();
+    $("#divOfAdminPage").hide();
+    $("#divOfSignInPage").show();
+  });
+}
+
+function divOfAdminPage(){
+  $("#adminLink").click(function(){
+    $("#divOfHomePage").hide();
+    $("#divOfSignInPage").hide();
+    $("#divOfAdminPage").show();
+  });
+}
+
+function addItemToShoppingCart(){
+  const spanCart = $("#spanCart")
+  if(spanCart.val() > 0){
+    spanCart.show()
+  } else{
+    spanCart.hide()
+  }
+}
+
+addItemToShoppingCart()
 
