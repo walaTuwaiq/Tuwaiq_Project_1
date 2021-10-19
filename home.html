@@ -10,6 +10,9 @@
     <title>Balla Rosa</title>
 </head>
 <body>
+
+
+  <!-- This navBar is responsive -->
     <nav class="navbar">
         <div class="logo"> <a href="home.html"> <img id="logo" src="logo2.png" alt=""> </a></div>
         <a href="#" class="toggle-button">
@@ -18,16 +21,15 @@
             <span class="bar"></span>
         </a>
         <div class="list">
-            <ul class="container-icons">
+            <ul id="icons-top" class="container-icons">
                 <li> <a id="adminLink" href="#" onclick="divOfAdminPage()">Admin Settings</a>  </li>
                 <li><a id="homeLink" href="#" onclick="divOfHomePage()"> <img class="top-icons" src="home.png" alt="home"> </a></li>
                 <li><a id="signInLink" href="#" onclick="divOfSignInPage()"> <img class="top-icons" src="person.png" alt="profile"> </a></li>
                 <li><a id="whatsupLink" href="https://wa.me/00966543422201" target="_blank"> <img class="top-icons" src="whatsup.png" alt="whatsup"> </a></li>
                 <li><a id="cartLink" href="#"><img class="top-icons" src="shoppingCart.png" alt="shoppingCart"> <small id="spanCart">0</small>  </a>
                 <!-- <span id="spanCart">0</span> -->
-                
                 </li>
-                <li><a href="#"> <img class="top-icons" src="moon.png" alt="darkMode"> </a></li>
+                <!-- <li><a href="#"> <img class="top-icons" src="moon.png" alt="darkMode"> </a></li> -->
             </ul>
         </div>
     </nav>
@@ -70,7 +72,36 @@
 
       <br>
 
+
+
+      <!-- This container is responsive -->
+      <div id="containerDefultFlowers">
+        
+        <div class="flowerDefultImage"> 
+          <img src="10.png" alt="flower">
+        </div>
+        <div class="flowerDefultImage"> 
+            <img src="9.png" alt="flower">
+        </div>
+        <div class="flowerDefultImage"> 
+              <img src="8.png" alt="flower">
+        </div>
+
+      </div>
+
       <div id="containerFlowers"></div>
+
+      <div id="containerDefultFlowers">
+        <div class="flowerDefultImage"> 
+          <img src="3.png" alt="flower">
+        </div>
+        <div class="flowerDefultImage"> 
+            <img src="2.png" alt="flower">
+        </div>
+        <div class="flowerDefultImage"> 
+              <img src="1.png" alt="flower">
+        </div>
+      </div>
 
       <br><hr><br>
 
@@ -84,7 +115,7 @@
     <div class="d-flex justify-content-center h-100">
       <div class="card">
         <div class="card-header">
-          <h3>Sign In</h3>
+          <h3>Log In</h3>
         </div>
         <div class="card-body">
           <div>
@@ -105,6 +136,7 @@
               <input type="checkbox">Remember Me
             </div>
             <div class="form-group">
+              <!-- <a href=""></a> -->
               <input onclick="logIn()" type="submit" value="Login" class="btn float-right login_btn">
             </div>
           </div>

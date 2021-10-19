@@ -167,9 +167,24 @@ hr {
   gap: 7px;
   /* width: 70px; */
   margin-left: 15px;
+  margin-bottom: 7px;
   justify-content: center;
   align-items: center;
   text-align: center;
+  /* border: 2px solid black; */
+}
+
+#containerDefultFlowers{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7px;
+  /* width: 70px; */
+  margin-left: 15px;
+  margin-bottom: 7px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5px;
   /* border: 2px solid black; */
 }
 
@@ -188,6 +203,19 @@ hr {
   border-radius: 1rem;
 }
 
+.flowerDefultImage{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgb(191, 222, 154, 0.4);
+  /* box-shadow: 3px 3px 10px 4px rgba(82, 119, 121, 0.2); */
+  /* width: 200px; */
+  height: auto;
+  /* margin: auto; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
+
 .flowerFullImage:hover {
   background-color: rgb(191, 222, 154, 0.6);
   transform: scaleY(0.99);
@@ -195,7 +223,15 @@ hr {
 
   cursor: pointer;
   transition: 0.3s ease;
+}
 
+.flowerDefultImage:hover {
+  background-color: rgb(191, 222, 154, 0.6);
+  transform: scaleY(0.99);
+  /* transform-origin: bottom; */
+
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .flowerFullImage img {
@@ -204,6 +240,30 @@ hr {
   margin: auto;
   justify-content: center;
   align-self: center;
+}
+
+.flowerDefultImage img {
+  /* border: 2px solid pink; */
+  width: 400px;
+  margin: auto;
+  justify-content: center;
+  align-self: center;
+}
+
+.buttonAddToCart{
+  background-color:rgb(237, 192, 169, 0.2) ;
+  border: 1px solid rgb(144, 129, 96);
+  border-radius: 0.7rem;
+  box-shadow: 1px 1px 1px 2px rgb(144, 129, 96, 0.3);
+  color: rgb(144, 129, 96, 0.5);
+  font-weight: bold;
+}
+
+.buttonAddToCart:hover{
+  background-color:rgba(235, 208, 194, 0.5) ;
+  color: rgb(144, 129, 96, 0.8);
+  transition: 0.3s ease;
+
 }
 
 /* #tableOfFlowers{
@@ -370,6 +430,11 @@ input:focus {
   }
 
   #containerFlowers{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #containerDefultFlowers{
     display: flex;
     flex-direction: column;
   }

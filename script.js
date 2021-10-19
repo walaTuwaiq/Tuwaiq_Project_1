@@ -1,5 +1,7 @@
 const toggle = document.getElementsByClassName("toggle-button")[0];
+// const toggle = $(".toggle-button")
 const list = document.getElementsByClassName("list")[0];
+// const list = $(".list")
 
 toggle.addEventListener("click", () => {
   list.classList.toggle("active");
@@ -10,23 +12,7 @@ const containerFlowers = $("#containerFlowers");
 // const spanCartIcon = $(`<span onclick="deleteItemFromHomePage(${index})">0</span>`)
 // div.append(spanCartIcon)
 
-
 const flowers = [
-  {
-    imgUrl: "10.png",
-    description: "kldjkljdlajd",
-    price: "90SR",
-  },
-  {
-    imgUrl: "9.png",
-    description: "kldjkljdlajd",
-    price: "90SR",
-  },
-  {
-    imgUrl: "8.png",
-    description: "kldjkljdlajd",
-    price: "90SR",
-  },
   {
     imgUrl: "4.png",
     description: "kldjkljdlajd",
@@ -54,21 +40,6 @@ const flowers = [
   },
   {
     imgUrl: "12.png",
-    description: "",
-    price: "90SR",
-  },
-  {
-    imgUrl: "3.png",
-    description: "",
-    price: "90SR",
-  },
-  {
-    imgUrl: "2.png",
-    description: "",
-    price: "90SR",
-  },
-  {
-    imgUrl: "1.png",
     description: "",
     price: "90SR",
   },
@@ -104,37 +75,56 @@ const flowers = [
   },
 ];
 
+const users = [
+  {
+    user: "wala",
+    password: "123",
+    typeOfUser: "Admin"
+  },
+  {
+    user: "hanan",
+    password: "456",
+    typeOfUser: "user"
+
+  },
+  {
+    user: "ahmed",
+    password: "789",
+    typeOfUser: "user"
+  },
+];
+
+let currentUser={}
+
+// localStorage.setItem("flowers", JSON.stringify(flowers));
+
 function addFlowers(array) {
   array.forEach((elm, index) => {
     const div = $(` <div class="flowerFullImage"> 
         <img src="${elm.imgUrl}" alt="flower">
         <p class="description"> ${elm.description} </p>
         <p class="price"> ${elm.price} </p>
+        </div>
         `);
-    const span = $(`<span id="${index}" onclick="deleteItemFromHomePage(${index})" class="spanElement">x</span>`)
-    div.append(span)
+    const btn = $(
+      `<button id="${index}" onclick="addItemToShoppingCart()" class="buttonAddToCart">Add to cart</button>`
+    );
+    div.append(btn);
+
+    if(currentUser.typeOfUser === "Admin"){
+      const span = $(
+        `<span id="${index}" onclick="deleteItemFromHomePage(${index})" class="spanElement">x</span>`
+      );
+      div.append(span);
+    }
+    
     containerFlowers.append(div);
     // div.append(span)
   });
   localStorage.setItem("flowers", JSON.stringify(flowers));
 }
 
-addFlowers( JSON.parse(localStorage.getItem("flowers")));
-
-const users = [
-  {
-    user: "wala",
-    password: "123",
-  },
-  {
-    user: "hanan",
-    password: "456",
-  },
-  {
-    user: "ahmed",
-    password: "789",
-  },
-];
+addFlowers(JSON.parse(localStorage.getItem("flowers")));
 
 localStorage.setItem("users", JSON.stringify(users));
 
@@ -142,41 +132,98 @@ function logIn() {
   const userName = $("#userName").val();
   const userPassword = $("#password").val();
 
-  const newUser = {
-    name: userName,
-    password: userPassword,
-  };
+  console.log("log in");
 
-  users.push(newUser);
+  //condition don't work!!
+  // DDDDOOOOONNNNEEEE!!!!
+  // if(users["user"] == userName && users["password"] == userPassword ){
+  // if (users.user == userName && users.password == userPassword) {
+  let found = false
+  const liItem = $(`<li></li>`);
+  liItem.html("")
+  users.forEach( (elm) => {
+    if(elm.user === userName && elm.password === userPassword){
+      currentUser = {...elm}
+      found = true 
+      $("#icons-top").append(liItem);
+      $("#divOfHomePage").show();
+      $("#divOfAdminPage").hide();
+      $("#divOfSignInPage").hide();
+    }
+    liItem.html(userName)
 
-  localStorage.setItem("user", JSON.stringify(users));
+    // else{
+    //        alert("User or password is incorrect");
+    // }
+    // can use filter method with array
+
+  })  
+
+  if(!found){
+    alert("User or password is incorrect")
+  }
+
+    
+    containerFlowers.html("")
+    addFlowers(JSON.parse(localStorage.getItem("flowers")));
+
+    // if the log in is correct we give currentus the value of the input in the login page
+    // currentUser= { user: userName, password: userPassword, 
+  }
+    
+  
+
+  // if(users.user)
+
+  // const newUser = {
+  //   name: userName,
+  //   password: userPassword,
+  // };
+
+  // users.push(newUser);
+
+  // localStorage.setItem("user", JSON.stringify(users));
+  // $("#divOfHomePage").show();
+  // $("#divOfAdminPage").hide();
+  // $("#divOfSignInPage").hide();
   // localStorage.setItem("password", JSON.stringify(userPassword))
-}
 
 // const imgUrlAdminPage = $("#imgUrlAdminPage").val();
 // const descriptionAdminPage = $("#descriptionAdminPage").val();
 // const priceItemAdminPage = $("#priceItemAdminPage").val();
 
+// else don't work!!
 function addItemToHomePage() {
   const imgUrlAdminPage = $("#imgUrlAdminPage").val();
   const descriptionAdminPage = $("#descriptionAdminPage").val();
   const priceItemAdminPage = $("#priceItemAdminPage").val();
 
-  const addNewFlower = {
-    imgUrl: imgUrlAdminPage,
-    description: descriptionAdminPage,
-    price: priceItemAdminPage,
-  };
+  if (
+    imgUrlAdminPage !== null ||
+    descriptionAdminPage !== null ||
+    priceItemAdminPage !== null
+  ) {
+    const addNewFlower = {
+      imgUrl: imgUrlAdminPage,
+      description: descriptionAdminPage,
+      price: priceItemAdminPage,
+    };
 
-  flowers.push(addNewFlower);
-  localStorage.setItem("flowers", JSON.stringify(flowers));
+    flowers.push(addNewFlower);
+    localStorage.setItem("flowers", JSON.stringify(flowers));
 
-  containerFlowers.html("");
-  addFlowers(JSON.parse(localStorage.getItem("flowers")));
+    containerFlowers.html("");
+    addFlowers(JSON.parse(localStorage.getItem("flowers")));
+
+    $("#divOfHomePage").show();
+    $("#divOfSignInPage").hide();
+    $("#divOfAdminPage").hide();
+  } else {
+    alert("Check again");
+  }
 }
 
-function deleteItemFromHomePage(id){
-
+function deleteItemFromHomePage(id) {
   flowers.splice(id, 1);
   localStorage.setItem("flowers", JSON.stringify(flowers));
   containerFlowers.html("");
@@ -185,41 +232,59 @@ function deleteItemFromHomePage(id){
 
 // const divOfHomePage = $("#divOfHomePage")
 
+$("#divOfHomePage").show();
 $("#divOfSignInPage").hide();
 $("#divOfAdminPage").hide();
 
-function divOfHomePage(){
-  $("#homeLink").click(function(){
+function divOfHomePage() {
     $("#divOfHomePage").show();
     $("#divOfAdminPage").hide();
     $("#divOfSignInPage").hide();
-  });
 }
 
-function divOfSignInPage(){
-  $("#signInLink").click(function(){
+function divOfSignInPage() {
     $("#divOfHomePage").hide();
     $("#divOfAdminPage").hide();
     $("#divOfSignInPage").show();
-  });
 }
 
-function divOfAdminPage(){
-  $("#adminLink").click(function(){
+function divOfAdminPage() {
     $("#divOfHomePage").hide();
     $("#divOfSignInPage").hide();
     $("#divOfAdminPage").show();
-  });
 }
 
-function addItemToShoppingCart(){
-  const spanCart = $("#spanCart")
-  if(spanCart.val() > 0){
-    spanCart.show()
-  } else{
-    spanCart.hide()
+let count = 0;
+
+function addItemToShoppingCart() {
+  count = count + 1;
+  localStorage.setItem("count", count);
+}
+
+function plusNumberInShoppingCart() {
+  const spanCart = $("#spanCart");
+  let countNumber = JSON.parse(localStorage.getItem("count"));
+  if (countNumber > 0) {
+    spanCart.text(countNumber);
+    spanCart.show();
+  } else {
+    spanCart.hide();
   }
 }
+plusNumberInShoppingCart();
 
-addItemToShoppingCart()
 
+
+//here lost something
+const adminSettings = $("#adminLink")
+function showAdminSettings(){
+
+  if(currentUser.typeOfUser === "Admin"){
+    adminSettings.show()
+  } 
+  // else {
+    // adminSettings.hide()
+  // }
+}
+
+showAdminSettings()
