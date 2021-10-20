@@ -1,16 +1,11 @@
 const toggle = document.getElementsByClassName("toggle-button")[0];
-// const toggle = $(".toggle-button")
 const list = document.getElementsByClassName("list")[0];
-// const list = $(".list")
 
 toggle.addEventListener("click", () => {
   list.classList.toggle("active");
 });
 
 const containerFlowers = $("#containerFlowers");
-
-// const spanCartIcon = $(`<span onclick="deleteItemFromHomePage(${index})">0</span>`)
-// div.append(spanCartIcon)
 
 const flowers = [
   {
@@ -79,23 +74,23 @@ const users = [
   {
     user: "wala",
     password: "123",
-    typeOfUser: "Admin"
+    typeOfUser: "Admin",
   },
   {
     user: "hanan",
     password: "456",
-    typeOfUser: "user"
-
+    typeOfUser: "user",
   },
   {
     user: "ahmed",
     password: "789",
-    typeOfUser: "user"
+    typeOfUser: "user",
   },
 ];
 
-let currentUser={}
+let currentUser = {};
 
+//if i lost my data from local storage, Do this:
 // localStorage.setItem("flowers", JSON.stringify(flowers));
 
 function addFlowers(array) {
@@ -111,15 +106,14 @@ function addFlowers(array) {
     );
     div.append(btn);
 
-    if(currentUser.typeOfUser === "Admin"){
+    if (currentUser["typeOfUser"] === "Admin") {
       const span = $(
         `<span id="${index}" onclick="deleteItemFromHomePage(${index})" class="spanElement">x</span>`
       );
       div.append(span);
     }
-    
+
     containerFlowers.append(div);
-    // div.append(span)
   });
   localStorage.setItem("flowers", JSON.stringify(flowers));
 }
@@ -132,95 +126,51 @@ function logIn() {
   const userName = $("#userName").val();
   const userPassword = $("#password").val();
 
-  console.log("log in");
-
-  //condition don't work!!
-  // DDDDOOOOONNNNEEEE!!!!
-  // if(users["user"] == userName && users["password"] == userPassword ){
-  // if (users.user == userName && users.password == userPassword) {
-  let found = false
-  const liItem = $(`<li></li>`);
-  liItem.html("")
-  users.forEach( (elm) => {
-    if(elm.user === userName && elm.password === userPassword){
-      currentUser = {...elm}
-      found = true 
+  let found = false;
+  const liItem = $(`<li class="nameOfUser"></li>`);
+  liItem.html("");
+  users.forEach((elm) => {
+    if (elm.user === userName && elm.password === userPassword) {
+      currentUser = { ...elm };
+      found = true;
       $("#icons-top").append(liItem);
       $("#divOfHomePage").show();
       $("#divOfAdminPage").hide();
       $("#divOfSignInPage").hide();
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
     }
-    liItem.html(userName)
+    liItem.html(userName);
+  });
 
-    // else{
-    //        alert("User or password is incorrect");
-    // }
-    // can use filter method with array
-
-  })  
-
-  if(!found){
-    alert("User or password is incorrect")
+  if (!found) {
+    alert("User or password is incorrect");
   }
 
-    
-    containerFlowers.html("")
-    addFlowers(JSON.parse(localStorage.getItem("flowers")));
+  containerFlowers.html("");
+  addFlowers(JSON.parse(localStorage.getItem("flowers")));
+  showAdminSettings()
+}
 
-    // if the log in is correct we give currentus the value of the input in the login page
-    // currentUser= { user: userName, password: userPassword, 
-  }
-    
-  
-
-  // if(users.user)
-
-  // const newUser = {
-  //   name: userName,
-  //   password: userPassword,
-  // };
-
-  // users.push(newUser);
-
-  // localStorage.setItem("user", JSON.stringify(users));
-  // $("#divOfHomePage").show();
-  // $("#divOfAdminPage").hide();
-  // $("#divOfSignInPage").hide();
-  // localStorage.setItem("password", JSON.stringify(userPassword))
-
-// const imgUrlAdminPage = $("#imgUrlAdminPage").val();
-// const descriptionAdminPage = $("#descriptionAdminPage").val();
-// const priceItemAdminPage = $("#priceItemAdminPage").val();
-
-// else don't work!!
 function addItemToHomePage() {
   const imgUrlAdminPage = $("#imgUrlAdminPage").val();
   const descriptionAdminPage = $("#descriptionAdminPage").val();
   const priceItemAdminPage = $("#priceItemAdminPage").val();
 
-  if (
-    imgUrlAdminPage !== null ||
-    descriptionAdminPage !== null ||
-    priceItemAdminPage !== null
-  ) {
-    const addNewFlower = {
-      imgUrl: imgUrlAdminPage,
-      description: descriptionAdminPage,
-      price: priceItemAdminPage,
-    };
+  const addNewFlower = {
+    imgUrl: imgUrlAdminPage,
+    description: descriptionAdminPage,
+    price: priceItemAdminPage,
+  };
 
-    flowers.push(addNewFlower);
-    localStorage.setItem("flowers", JSON.stringify(flowers));
+  flowers.push(addNewFlower);
+  localStorage.setItem("flowers", JSON.stringify(flowers));
 
-    containerFlowers.html("");
-    addFlowers(JSON.parse(localStorage.getItem("flowers")));
+  containerFlowers.html("");
+  addFlowers(JSON.parse(localStorage.getItem("flowers")));
 
-    $("#divOfHomePage").show();
-    $("#divOfSignInPage").hide();
-    $("#divOfAdminPage").hide();
-  } else {
-    alert("Check again");
-  }
+  $("#divOfHomePage").show();
+  $("#divOfSignInPage").hide();
+  $("#divOfAdminPage").hide();
 }
 
 function deleteItemFromHomePage(id) {
@@ -230,28 +180,26 @@ function deleteItemFromHomePage(id) {
   addFlowers(JSON.parse(localStorage.getItem("flowers")));
 }
 
-// const divOfHomePage = $("#divOfHomePage")
-
 $("#divOfHomePage").show();
 $("#divOfSignInPage").hide();
 $("#divOfAdminPage").hide();
 
 function divOfHomePage() {
-    $("#divOfHomePage").show();
-    $("#divOfAdminPage").hide();
-    $("#divOfSignInPage").hide();
+  $("#divOfHomePage").show();
+  $("#divOfAdminPage").hide();
+  $("#divOfSignInPage").hide();
 }
 
 function divOfSignInPage() {
-    $("#divOfHomePage").hide();
-    $("#divOfAdminPage").hide();
-    $("#divOfSignInPage").show();
+  $("#divOfHomePage").hide();
+  $("#divOfAdminPage").hide();
+  $("#divOfSignInPage").show();
 }
 
 function divOfAdminPage() {
-    $("#divOfHomePage").hide();
-    $("#divOfSignInPage").hide();
-    $("#divOfAdminPage").show();
+  $("#divOfHomePage").hide();
+  $("#divOfSignInPage").hide();
+  $("#divOfAdminPage").show();
 }
 
 let count = 0;
@@ -273,18 +221,28 @@ function plusNumberInShoppingCart() {
 }
 plusNumberInShoppingCart();
 
+const adminSettings = $("#adminLink");
+adminSettings.hide();
 
-
-//here lost something
-const adminSettings = $("#adminLink")
-function showAdminSettings(){
-
-  if(currentUser.typeOfUser === "Admin"){
-    adminSettings.show()
-  } 
-  // else {
-    // adminSettings.hide()
-  // }
+function showAdminSettings() {
+  if (currentUser["typeOfUser"] == "Admin") {
+    adminSettings.show();
+  }
 }
 
-showAdminSettings()
+
+const span = $(".upSpan");
+
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if (this.scrollY >= 1000) {
+      span.addClass("show");
+    } else {
+      span.removeClass("show");
+    }
+  });
+});
+
+function clickUpSpan() {
+  $(window).scrollTop("0px");
+}
