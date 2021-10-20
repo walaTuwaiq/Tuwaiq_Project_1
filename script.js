@@ -10,63 +10,63 @@ const containerFlowers = $("#containerFlowers");
 const flowers = [
   {
     imgUrl: "4.png",
-    description: "kldjkljdlajd",
-    price: "90SR",
+    description: "Vintage gift",
+    price: "130SR",
   },
   {
     imgUrl: "5.png",
-    description: "kldjkljdlajd",
+    description: "boquette with text",
     price: "80SR",
   },
   {
     imgUrl: "6.png",
-    description: "dddddddddddd",
-    price: "90SR",
+    description: "white tulip flower",
+    price: "170SR",
   },
   {
     imgUrl: "7.png",
-    description: "",
-    price: "90SR",
+    description: 'Classic boquette "medium size"',
+    price: "120SR",
   },
   {
     imgUrl: "11.png",
-    description: "",
-    price: "90SR",
+    description: "Dreamy boquette",
+    price: "200SR",
   },
   {
     imgUrl: "12.png",
-    description: "",
-    price: "90SR",
+    description: "pinky boquette",
+    price: "120SR",
   },
   {
     imgUrl: "13.png",
-    description: "",
-    price: "90SR",
+    description: 'flowers boquette "medium size" ',
+    price: "120SR",
   },
   {
     imgUrl: "14.png",
-    description: "",
-    price: "90SR",
+    description: 'flowers boquette "Big size" ',
+    price: "170SR",
   },
   {
     imgUrl: "15.png",
-    description: "",
-    price: "90SR",
+    description: "Louis vuition gift with flowers",
+    price: "1700SR",
   },
   {
     imgUrl: "16.png",
-    description: "",
-    price: "90SR",
+    description: "GUESS graduation gift",
+    price: "450SR",
   },
   {
     imgUrl: "17.png",
-    description: "",
-    price: "90SR",
+    description: "Skagen watch with garden white jory",
+    price: "400SR",
   },
   {
     imgUrl: "18.png",
-    description: "",
-    price: "90SR",
+    description: "TED BAKER with pink jory",
+    price: "190SR",
   },
 ];
 
@@ -148,7 +148,7 @@ function logIn() {
 
   containerFlowers.html("");
   addFlowers(JSON.parse(localStorage.getItem("flowers")));
-  showAdminSettings()
+  showAdminSettings();
 }
 
 function addItemToHomePage() {
@@ -229,7 +229,6 @@ function showAdminSettings() {
     adminSettings.show();
   }
 }
-
 
 const span = $(".upSpan");
 
